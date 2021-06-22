@@ -1,5 +1,6 @@
 package ru.job4j.forum.control;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,19 +14,21 @@ import ru.job4j.forum.repository.UserRepository;
 @Controller
 public class RegControl {
 
+    private final PasswordEncoder encoder;
     private final UserRepository users;
 
-    public RegControl(UserRepository users) {
+    public RegControl(PasswordEncoder encoder, UserRepository users) {
+        this.encoder = encoder;
         this.users = users;
     }
 
     @PostMapping("/reg")
     public String save(@ModelAttribute User user) {
-        if (users.findByName(user.getUsername()) != null) {
+        if (users.findByName(user.getUsername()).isPresent()) {
             return "redirect:/reg?error=true";
         }
         user.setEnabled(true);
-        user.setPassword(user.getPassword());
+        user.setPassword(encoder.encode(user.getPassword()));
         users.save(user);
         return "redirect:/login";
     }

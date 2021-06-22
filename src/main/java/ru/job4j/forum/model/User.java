@@ -1,9 +1,15 @@
 package ru.job4j.forum.model;
 
 
+import javax.persistence.*;
 import java.util.Objects;
 
+
+@Entity
+@Table(name = "users")
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String password;
@@ -11,6 +17,7 @@ public class User {
     private String username;
 
     private boolean enabled;
+
     public static User of(String name, String password) {
         User user = new User();
         user.username = name;

@@ -14,9 +14,10 @@
 
     <title>Форум job4j</title>
 </head>
+<link rel="icon" type="image/png" href="../favicon.ico"/>
 <body>
 <div>
-    Login as : ${user.username}
+    Login as : ${user.username} | <a href="<c:url value='/login?logout=true'/>">Выйти</a>
 </div>
 <a href="<c:url value='/create'/>">Добавить тему</a>
 <div class="container mt-3">
