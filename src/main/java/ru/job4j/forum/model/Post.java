@@ -1,13 +1,20 @@
 package ru.job4j.forum.model;
 
+import javax.persistence.*;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Objects;
 
+@Entity
+@Table(name = "posts")
 public class Post {
-    private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
     private String name;
-    private String desc;
-    private Calendar created;
+    private String description;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date created = new Date(System.currentTimeMillis());
 
     public static Post of(String name) {
         Post post = new Post();
@@ -15,11 +22,11 @@ public class Post {
         return post;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -31,19 +38,19 @@ public class Post {
         this.name = name;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setDescription(String desc) {
+        this.description = desc;
     }
 
-    public Calendar getCreated() {
+    public Date getCreated() {
         return created;
     }
 
-    public void setCreated(Calendar created) {
+    public void setCreated(Date created) {
         this.created = created;
     }
 
@@ -54,12 +61,12 @@ public class Post {
         Post post = (Post) o;
         return id == post.id &&
                 Objects.equals(name, post.name) &&
-                Objects.equals(desc, post.desc) &&
+                Objects.equals(description, post.description) &&
                 Objects.equals(created, post.created);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, desc, created);
+        return Objects.hash(id, name, description, created);
     }
 }

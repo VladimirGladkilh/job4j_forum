@@ -18,7 +18,7 @@
         </tr>
         <tr>
             <td>Содержание:</td>
-            <td><input type='text' name='desc' value="${post.desc}"></td>
+            <td><input type='text' name='description' value="${post.description}"></td>
         </tr>
 
         <tr>

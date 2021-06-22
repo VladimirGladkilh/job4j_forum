@@ -3,20 +3,23 @@ package ru.job4j.forum.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.job4j.forum.model.Post;
-import ru.job4j.forum.repository.Store;
+import ru.job4j.forum.repository.PostRepository;
 
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class PostService {
-    private final Store postRepository;
+    private final PostRepository postRepository;
 
     @Autowired
-    public PostService(Store postRepository) {
+    public PostService(PostRepository postRepository) {
         this.postRepository = postRepository;
     }
 
-    public Collection<Post> getAll() {
-        return postRepository.findAll();
+    public List<Post> getAll() {
+        List<Post> rsl = new ArrayList<>();
+        postRepository.findAll().forEach(rsl::add);
+        return rsl;
     }
 }

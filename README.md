@@ -1,6 +1,6 @@
 # job4j_forum
 Форум на Spring Boot
-Форум на весенней загрузке или Forum created with Spring Boot
+![alt text](https://github.com/VladimirGladkilh/job4j_forum/blob/task2/preview.jpg?raw=true)
 
 
 [![Build Status](https://www.travis-ci.com/VladimirGladkilh/job4j_forum.svg?branch=main)](https://www.travis-ci.com/VladimirGladkilh/job4j_forum)
