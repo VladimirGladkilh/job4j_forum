@@ -13,9 +13,10 @@ public class PostMem implements Store {
     private final AtomicInteger post_id = new AtomicInteger();
 
     public PostMem() {
-        postMap.put(1, Post.of("Subject 1"));
-        postMap.put(2, Post.of("Subject 2"));
-        postMap.put(3, Post.of("Subject 3"));
+        for (int i = 1; i < 5; i++) {
+            Post post = Post.of("Subject " + i);
+            save(post);
+        }
     }
 
     @Override
@@ -40,7 +41,6 @@ public class PostMem implements Store {
     public void delete(Post post) {
         postMap.remove(post.getId());
     }
-
 
 
 }
