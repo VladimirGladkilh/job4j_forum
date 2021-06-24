@@ -34,6 +34,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
+
                 .antMatchers("/login", "/reg")
                 .permitAll()
                 .antMatchers("/**")
@@ -50,6 +51,8 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .invalidateHttpSession(true)
                 .permitAll()
                 .and()
+                // .antMatchers("/images/**").permitAll().anyRequest().anonymous() //add use images
+
                 .csrf()
                 .disable();
     }

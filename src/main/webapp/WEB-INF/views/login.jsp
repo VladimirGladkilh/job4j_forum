@@ -155,7 +155,7 @@
     }
 
 
-    input[type=text]:placeholder, input[type=password]::placeholder {
+    input[type=text]::placeholder, input[type=password]::placeholder {
         color: #cccccc;
     }
 
@@ -296,7 +296,7 @@
         width: 60%;
     }
 </style>
-<link rel="icon" type="image/png" href="../favicon.ico"/>
+<link rel="icon" href="http://localhost:8080/logo.png">
 <body>
 
 
@@ -306,7 +306,7 @@
 
         <!-- Icon -->
         <div class="fadeIn first">
-            <img src="../favicon.ico" id="icon" alt="User Icon"/>
+            <img src="logo.png" id="icon" alt="User Icon"/>
         </div>
 
         <!-- Login Form -->
@@ -316,8 +316,10 @@
                         ${errorMessage}
                 </div>
             </c:if>
-            <input type="text" id="username" class="fadeIn second" name="username" placeholder="username">
-            <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
+            <input type="text" id="username" class="fadeIn second" name="username" placeholder="username"
+                   autocomplete="username">
+            <input type="password" id="password" class="fadeIn third" name="password" placeholder="password"
+                   autocomplete="current-password">
             <input type="submit" class="fadeIn fourth" value="Log In">
         </form>
 
