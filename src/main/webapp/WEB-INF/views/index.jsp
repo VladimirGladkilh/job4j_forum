@@ -29,6 +29,7 @@
                 <th/>
                 <th scope="col">Тема</th>
                 <th scope="col">Содержание</th>
+                <th scope="col">Автор</th>
             </tr>
             </thead>
             <tbody>
@@ -37,6 +38,7 @@
                     <td>${listIndex.index + 1}</td>
                     <td><a href="<c:url value="/edit?id=${post.id}"/>"><c:out value="${post.name}"/></a></td>
                     <td><c:out value="${post.desc}"/></td>
+                    <td><c:out value="${post.user.username}"/></td>
                 </tr>
             </c:forEach>
             </tbody>

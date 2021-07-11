@@ -8,17 +8,21 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.job4j.forum.model.Post;
+import ru.job4j.forum.model.User;
 import ru.job4j.forum.repository.Store;
+import ru.job4j.forum.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class PostControl {
-    private final Store accidentRepository;
+    private final Store postMem;
+    private final UserService userService;
 
     @Autowired
-    public PostControl(Store accidents) {
-        this.accidentRepository = accidents;
+    public PostControl(Store accidents, UserService userService) {
+        this.postMem = accidents;
+        this.userService = userService;
     }
 
     @GetMapping("/create")
@@ -28,13 +32,21 @@ public class PostControl {
 
     @GetMapping("/edit")
     public String edit(@RequestParam("id") int id, Model model) {
-        model.addAttribute("post", accidentRepository.findById(id));
+        Post post = postMem.findById(id);
+        model.addAttribute("post", post);
+        User user = post.getUser();
+        model.addAttribute("username", user.getUsername());
         return "post/edit";
     }
 
     @PostMapping("/save")
-    public String save(@ModelAttribute Post post, HttpServletRequest req) {
-        accidentRepository.save(post);
+    public String save(@ModelAttribute Post post, HttpServletRequest req, Model model) {
+        String username = req.getParameter("username");
+        if (username != null) {
+            User user = userService.findByName(username);
+            post.setUser(user);
+        }
+        postMem.save(post);
         return "redirect:/";
     }
 

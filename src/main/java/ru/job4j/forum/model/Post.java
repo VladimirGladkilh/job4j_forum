@@ -8,10 +8,12 @@ public class Post {
     private String name;
     private String desc;
     private Calendar created;
+    private User user;
 
-    public static Post of(String name) {
+    public static Post of(String name, User user) {
         Post post = new Post();
         post.name = name;
+        post.user = user;
         return post;
     }
 
@@ -45,6 +47,14 @@ public class Post {
 
     public void setCreated(Calendar created) {
         this.created = created;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override
