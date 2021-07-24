@@ -296,7 +296,7 @@
         width: 60%;
     }
 </style>
-<link rel="icon" href="http://localhost:8080/logo.png">
+<!--link rel="icon" href="http://localhost:8080/logo.png"-->
 <body>
 
 
@@ -306,7 +306,7 @@
 
         <!-- Icon -->
         <div class="fadeIn first">
-            <img src="logo.png" id="icon" alt="User Icon"/>
+            <!--img src="images/small.png" id="icon" alt="User Icon" /-->
         </div>
 
         <!-- Login Form -->

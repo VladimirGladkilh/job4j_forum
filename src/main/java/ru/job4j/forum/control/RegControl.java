@@ -11,6 +11,8 @@ import ru.job4j.forum.model.Post;
 import ru.job4j.forum.model.User;
 import ru.job4j.forum.repository.UserRepository;
 
+import javax.validation.ConstraintViolationException;
+
 @Controller
 public class RegControl {
 
@@ -24,12 +26,13 @@ public class RegControl {
 
     @PostMapping("/reg")
     public String save(@ModelAttribute User user) {
-        if (users.findByName(user.getUsername()).isPresent()) {
-            return "redirect:/reg?error=true";
-        }
         user.setEnabled(true);
         user.setPassword(encoder.encode(user.getPassword()));
-        users.save(user);
+        try {
+            users.save(user);
+        } catch (ConstraintViolationException e) {
+            return "redirect:/reg?error=true";
+        }
         return "redirect:/login";
     }
 
