@@ -21,3 +21,12 @@ CREATE TABLE users
 
 ALTER TABLE posts
     ADD COLUMN user_id int;
+
+ALTER TABLE users
+    add column authority_id int;
+
+CREATE TABLE authorities
+(
+    id        serial primary key,
+    authority VARCHAR(50) NOT NULL unique
+);

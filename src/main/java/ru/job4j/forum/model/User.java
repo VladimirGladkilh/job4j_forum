@@ -15,6 +15,10 @@ public class User {
     private String password;
 
     private String username;
+    @ManyToOne
+    @JoinColumn(name = "authority_id")
+    private Authority authority;
+
 
     private boolean enabled;
 
@@ -57,6 +61,14 @@ public class User {
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public Authority getAuthority() {
+        return authority;
+    }
+
+    public void setAuthority(Authority authority) {
+        this.authority = authority;
     }
 
     @Override
