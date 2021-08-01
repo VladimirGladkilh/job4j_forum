@@ -13,6 +13,7 @@
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <title>Форум job4j</title>
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/favicon.ico"/>
 </head>
 <body>
 <div>
