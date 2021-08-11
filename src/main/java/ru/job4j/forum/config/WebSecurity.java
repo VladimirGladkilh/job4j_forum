@@ -17,12 +17,10 @@ import javax.sql.DataSource;
 @Configuration
 @EnableWebSecurity
 public class WebSecurity extends WebSecurityConfigurerAdapter {
+
     @Qualifier("dataSource")
     @Autowired
     DataSource dataSource;
-    @Autowired
-    PasswordEncoder passwordEncoder;
-
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
