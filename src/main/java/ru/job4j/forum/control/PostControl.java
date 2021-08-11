@@ -25,6 +25,7 @@ public class PostControl {
         this.userService = userService;
     }
 
+
     @GetMapping("/create")
     public String create(Model model) {
         return "post/create";
