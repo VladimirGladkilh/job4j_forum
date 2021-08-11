@@ -17,11 +17,8 @@ import javax.validation.ConstraintViolationException;
 
 @Controller
 public class RegControl {
-    @Autowired
     private final PasswordEncoder encoder;
-    @Autowired
     private final UserRepository users;
-    @Autowired
     private final AuthorityRepository authorities;
 
     @Autowired
