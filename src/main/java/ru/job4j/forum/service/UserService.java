@@ -15,10 +15,10 @@ public class UserService {
     }
 
     public User findByName(String name) {
-        return userRepository.findByName(name);
+        return userRepository.findByName(name).orElse(null);
     }
 
     public User findById(int id) {
-        return userRepository.findById(id);
+        return userRepository.findById(id).orElse(null);
     }
 }

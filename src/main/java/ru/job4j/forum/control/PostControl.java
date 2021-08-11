@@ -9,19 +9,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.job4j.forum.model.Post;
 import ru.job4j.forum.model.User;
-import ru.job4j.forum.repository.Store;
+import ru.job4j.forum.repository.PostRepository;
 import ru.job4j.forum.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class PostControl {
-    private final Store postMem;
+    private final PostRepository postRepository;
     private final UserService userService;
 
     @Autowired
-    public PostControl(Store accidents, UserService userService) {
-        this.postMem = accidents;
+    public PostControl(PostRepository postRepository, UserService userService) {
+        this.postRepository = postRepository;
         this.userService = userService;
     }
 
@@ -32,8 +32,8 @@ public class PostControl {
     }
 
     @GetMapping("/edit")
-    public String edit(@RequestParam("id") int id, Model model) {
-        Post post = postMem.findById(id);
+    public String edit(@RequestParam("id") long id, Model model) {
+        Post post = postRepository.findById(id).orElse(null);
         model.addAttribute("post", post);
         User user = post.getUser();
         model.addAttribute("username", user.getUsername());
@@ -47,7 +47,7 @@ public class PostControl {
             User user = userService.findByName(username);
             post.setUser(user);
         }
-        postMem.save(post);
+        postRepository.save(post);
         return "redirect:/";
     }
 
