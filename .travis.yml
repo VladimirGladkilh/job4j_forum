@@ -2,6 +2,8 @@ language: java
 jdk:
 - openjdk11
 sudo: false
+install: true
+script: mvn clean package -DskipTests=true
 after_success:
 - bash <(curl -s https://codecov.io/bash)
 notifications:
@@ -17,3 +19,5 @@ deploy:
   api_key:
     secure: J/ZPI6Tj+TK7DEepad88TlmiojqwniG+BIwn0BaG5kIyLrTZXoh1DDlwnn7guF8rO/0gkIoqFCDgJgRCuHdOQ3+nEnOVb4wZzjMoyTtuAWoT4Sujmkcaiz7dlPHaze5gdkamrPKC7H5wKFuvnKAZKyoMoYwbGoTitycFe/Tq/jfKzXfxUJTHVxEB7QVjC/Gp2dDpt6+kN1BboXZQmag+R2CqO0/Ovp2W4fBItwnywMn4zxcVhrRaKObDNRhEkFLQRBfJRjVW8RuwAVEr6i7nXiULBzcEFYV8ILMnN04VRTCUg7z/ge8OUGKoXoJpoJATMIEmRmh/9o8Ty/XZD7nm4yrNYqaPdyUg3Vh3JzSvt5/1Bmw5CgIJiFCLmiS1nbYMxYajGtkX1LLG/VonR4BfUau65I/rTyruO8ilSuLu9sBZz6EGhE09J+0nS0dSAmFQ9cnBCTdUJ5M2UTPSU9u9W0Y7nDwyXOAxFN4sFM//1NNW9wBPXVk2Ljl4Vj1xUHjdWg2oj0Zv8j/2RKBiDBrDWhYF52b+/5XNl1NJT2YD8RbMzJ7PtwdFQfYeOXWpsn8pZZznNr64hW3GwsOQ5b/ZvOO2ObfD5RYynmyFCHFVm6wm43ab9q3+D89MGrdPYC39MCjD69dQyw5rMNBx+rk5MOtP2rFl/BBloOso29fPR5M=
   app: guarded-refuge-75246
+  on:
+    branch: main
