@@ -13,10 +13,11 @@
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <title>Форум job4j</title>
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/favicon.ico"/>
 </head>
 <body>
 <div>
-    Login as : ${user.username}
+    Login as : ${user.username} | <a href="<c:url value='/login?logout=true'/>">Выйти</a>
 </div>
 <a href="<c:url value='/create'/>">Добавить тему</a>
 <div class="container mt-3">
@@ -31,6 +32,7 @@
                 <th scope="col">Тема</th>
                 <th scope="col">Содержание</th>
                 <th scope="col">Создан</th>
+                <th scope="col">Автор</th>
             </tr>
             </thead>
             <tbody>
@@ -39,7 +41,8 @@
                     <td>${listIndex.index + 1}</td>
                     <td><a href="<c:url value="/edit?id=${post.id}"/>"><c:out value="${post.name}"/></a></td>
                     <td><c:out value="${post.description}"/></td>
-                    <td><fmt:formatDate value="${post.created}" type="both" dateStyle="short" timeStyle="short"  /></td>
+                    <td><fmt:formatDate value="${post.created}" type="both" dateStyle="short" timeStyle="short"/></td>
+                    <td><c:out value="${post.user.username}"/></td>
                 </tr>
             </c:forEach>
             </tbody>

@@ -1,7 +1,6 @@
 package ru.job4j.forum.model;
 
 import javax.persistence.*;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 
@@ -15,8 +14,12 @@ public class Post {
     private String description;
     @Temporal(TemporalType.TIMESTAMP)
     private Date created = new Date(System.currentTimeMillis());
+    @ManyToOne()
+    @JoinColumn(name = "user_id")
+    private User user;
 
-    public static Post of(String name) {
+
+    public static Post of(String name, User user) {
         Post post = new Post();
         post.name = name;
         post.user = user;
