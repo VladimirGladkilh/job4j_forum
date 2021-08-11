@@ -1,5 +1,6 @@
 package ru.job4j.forum.control;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,11 +17,14 @@ import javax.validation.ConstraintViolationException;
 
 @Controller
 public class RegControl {
-
+    @Autowired
     private final PasswordEncoder encoder;
+    @Autowired
     private final UserRepository users;
+    @Autowired
     private final AuthorityRepository authorities;
 
+    @Autowired
     public RegControl(PasswordEncoder encoder, UserRepository users, AuthorityRepository authorities) {
         this.encoder = encoder;
         this.users = users;
